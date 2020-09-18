@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==============================================================================
-# Copyright 2020 The TFLITE-SOC Authors. All Rights Reserved.
+# Copyright 2020 The Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ set -e
 
 USER_ID=$(id -u)
 
-IMAGE_NAME="mod-nightly-custom-op-ubuntu16-user-$USER_ID"
+IMAGE_NAME="dev-user-$USER_ID"
 
 # create named container if arg given (--rm default)
 if [ -z $1 ]; then
@@ -38,7 +38,7 @@ else
 fi
 
 # start bash
-docker run $CNAME --privileged -it --device=/dev/ttyACM0 \
+docker run $CNAME --privileged -it \
   --user=$USER_ID \
   -v ${PWD}:/working_dir -w /working_dir \
   $IMAGE_NAME \

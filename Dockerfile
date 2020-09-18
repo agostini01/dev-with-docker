@@ -1,5 +1,5 @@
 # ==============================================================================
-# Copyright 2020 The TFLITE-SOC Authors. All Rights Reserved.
+# Copyright 2020 The Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,32 +20,29 @@ FROM tensorflow/tensorflow:nightly-custom-op-ubuntu16
 RUN apt update
 
 # Development Tools
-RUN apt install -y curl
-RUN apt install -y wget
-RUN apt install -y tree
-RUN apt install -y less
+RUN apt install -y curl wget tree less git vim tmux htop
 
-RUN apt install -y git
-
-RUN apt install -y vim
-RUN apt install -y tmux
+# Compilers
+RUN apt install clang-8 lld-8 -y
 
 # Requirements for VSCODE plugins
 WORkDIR /usr/local/bin
 RUN wget -q https://github.com/bazelbuild/buildtools/releases/download/3.2.1/buildifier -O buildifier
 
-# Tools to cross-compile for the Zedboard
-# RUN apt install -y minicom
-# RUN apt install -y crossbuild-essential-armhfA
-
 # Tools to profile x86 code 
 # RUN apt install -y perf
 
-# WORKDIR /root
-# RUN wget https://github.com/Kitware/CMake/releases/download/v3.13.5/cmake-3.13.5-Linux-x86_64.sh && \
-#     chmod +x cmake-3.13.5-Linux-x86_64.sh && \
-#     ./cmake-3.13.5-Linux-x86_64.sh --skip-license --prefix=/usr
-# 
+WORKDIR /tmp
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.18.2/cmake-3.18.2-Linux-x86_64.sh && \
+    chmod +x cmake-3.18.2-Linux-x86_64.sh && \
+    ./cmake-3.18.2-Linux-x86_64.sh --skip-license --prefix=/usr/local
+
+RUN wget https://github.com/ninja-build/ninja/releases/download/v1.10.1/ninja-linux.zip && \
+    unzip ninja-linux.zip && \
+    mv ninja /usr/local/bin/ninja && \
+    ln -s /usr/local/bin/ninja /usr/sbin/ninja
+
+ 
 # # Clone flame graphs for profiling
 # WORKDIR /root/src
 # RUN git clone https://github.com/brendangregg/FlameGraph
@@ -57,7 +54,7 @@ RUN git clone https://github.com/agostini01/dotfiles.git && \
     ln -sf dotfiles/.gitignore_global .gitignore_global && \
     \
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
     \
     ln -sf dotfiles/.vimrc            .vimrc && \
     ln -sf dotfiles/.ctags            .ctags && \
@@ -67,14 +64,6 @@ RUN git clone https://github.com/agostini01/dotfiles.git && \
     ln -sf dotfiles/.tmux.conf        .tmux.conf
 
 RUN echo "PS1='\[\033[01;31m\][\[\033[01;30m\]\u@\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '" >> .bashrc
-
-
-# Print welcome message
-RUN echo "echo 'Welcome to tensorflow custom-op-arm-ubuntu16'" >> ~/.bashrc && \
-    echo "echo ' '" >> ~/.bashrc && \
-    echo "echo 'To connect to the zedboard over tty:'" >> ~/.bashrc && \
-    echo "echo '    minicom -D /dev/ttyACM0 -b 115200 -8 -o'" >> ~/.bashrc && \
-    echo "echo ' '" >> ~/.bashrc 
 
 
 # ============================================================================
@@ -93,7 +82,7 @@ RUN git clone https://github.com/agostini01/dotfiles.git && \
     ln -sf dotfiles/.gitignore_global .gitignore_global && \
     \
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
     \
     ln -sf dotfiles/.vimrc            .vimrc && \
     ln -sf dotfiles/.ctags            .ctags && \
@@ -104,12 +93,13 @@ RUN git clone https://github.com/agostini01/dotfiles.git && \
 
 RUN echo "PS1='\[\033[01;31m\][\[\033[01;30m\]\u@\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '" >> .bashrc
 
+# Select clang compiler
+RUN echo "export CXX=/usr/bin/clang++-8" >> ~/.bashrc && \
+    echo "export CC=/usr/bin/clang-8" >> ~/.bashrc
+    
 # Print welcome message
-RUN echo "echo 'Welcome to tensorflow custom-op-arm-ubuntu16'" >> ~/.bashrc && \
+RUN echo "echo 'Welcome to Nico's development container" >> ~/.bashrc && \
     echo "echo ' '" >> ~/.bashrc && \
-    echo "echo 'To connect to the zedboard over tty:'" >> ~/.bashrc && \
-    echo "echo '    minicom -D /dev/ttyACM0 -b 115200 -8 -o'" >> ~/.bashrc && \
+    echo "echo 'Make sure that the correct USER_ID and GROUP_ID'" >> ~/.bashrc && \
+    echo "echo '    have been used to start this container'" >> ~/.bashrc && \
     echo "echo ' '" >> ~/.bashrc 
-
-# Change to the correct directory
-WORKDIR  /

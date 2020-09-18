@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==============================================================================
-# Copyright 2020 The TFLITE-SOC Authors. All Rights Reserved.
+# Copyright 2020 The Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
 # get workflow+container name
-IMAGE_NAME="mod-nightly-custom-op-ubuntu16-user-$USER_ID"
+IMAGE_NAME="dev-user-$USER_ID"
 
 # build container
 docker build -f ./Dockerfile . \
