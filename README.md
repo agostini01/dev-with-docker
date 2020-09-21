@@ -21,5 +21,5 @@ that folder as `/working_dir/` and changes to it will be persistent.
 
 ## Software stack
 
-The `dockerfile installs a range of development tools.  Currently, these tools
+The `dockerfile` installs a range of development tools.  Currently, these tools
 support `mlir-hlo`, `llvm`, `tensorflow` project compilation needs.
