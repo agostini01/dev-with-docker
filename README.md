@@ -30,5 +30,5 @@ support `mlir-hlo`, `llvm`, `tensorflow` project compilation needs.
 ## Know issues
 
 Docker Desktop on MacOs was reported to not being able to compile
-`bazel build //tensorflow/compiler/mlir:tf-mlir-translate`
-beware of this limitation if running Docker Desktop on MacOS.
+`bazel build //tensorflow/compiler/mlir:tf-mlir-translate`.
+Beware of this limitation if running Docker Desktop on MacOS.
