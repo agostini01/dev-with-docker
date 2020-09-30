@@ -25,6 +25,11 @@ RUN apt install -y curl wget tree less git vim tmux htop
 # Compilers
 RUN apt install clang-8 lld-8 -y
 
+# ONNX-mlir dependencies
+RUN apt install -y libncurses-dev
+# Due to old version on apt, these are compiled from source
+# RUN apt install -y protobuf-compiler libprotobuf-dev
+
 # Requirements for VSCODE plugins
 WORkDIR /usr/local/bin
 RUN wget -q https://github.com/bazelbuild/buildtools/releases/download/3.2.1/buildifier -O buildifier
