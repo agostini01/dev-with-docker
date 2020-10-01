@@ -3,7 +3,7 @@
 This file guides you on how to compile and use [onnx-mlir](https://github.com/onnx/onnx-mlir)
 to generate `.ll` files for different `.onnx` models.
 It leverages the Docker container build by this project. 
-[Check the README](./README.md)
+[Check the README](./README.md).
 
 Project available at: https://github.com/onnx/onnx-mlir
 
@@ -79,6 +79,9 @@ Install onnx for python. This enables downloading several onnx models.
 pip install onnx==1.7.0
 ```
 
+The `./onnx-mlir` binary will be available at
+`/working_dir/onnx-mlir/build/bin` after compilation.
+
 ## Test ONNX models
 
 ```
@@ -96,6 +99,10 @@ Compiling a simple `add` example to `mlir`.
 
 # Compile model to a shared library
 ./onnx-mlir --EmitLib /working_dir/onnx-mlir/third_party/onnx/onnx/backend/test/data/node/test_add/model.onnx.mlir
+
+# Compile llvm.mlir to `.ll` file
+/working_dir/llvm-project/build/bin/mlir-translate --mlir-to-llvmir /working_dir/examples/mnist/mnist.onnx.onnx.mlir -o /working_dir/examples/mnist/mnist.ll
+
 ```
 
 ## Download and compile bigger models
