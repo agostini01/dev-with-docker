@@ -1,5 +1,10 @@
 # Using ONNX-mlir
 
+This file guides you on how to compile and use [onnx-mlir](https://github.com/onnx/onnx-mlir)
+to generate `.ll` files for different `.onnx` models.
+It leverages the Docker container build by this project. 
+[Check the README](./README.md)
+
 Project available at: https://github.com/onnx/onnx-mlir
 
 ## Build Steps:
@@ -102,6 +107,9 @@ The next subsections will guide you to:
 1. compile to `llvm.mlir`, 
 1. use `mlir-translate` to get a `.ll` file
 1. use `clang-10` tools to "optimize" the `.ll` file and compile into `x86.asm`
+
+Note that when generating the `.ll` file, the constant weights of your
+network will be saved to the `/tmp/` folder of the container.
 
 ### MNIST
 
