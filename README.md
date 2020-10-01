@@ -25,7 +25,14 @@ that folder as `/working_dir/` and changes to it will be persistent.
 ## Software stack
 
 The `dockerfile` installs a range of development tools.  Currently, these tools
-support `mlir-hlo`, `llvm`, `tensorflow` project compilation needs.
+support `mlir-hlo`, `llvm`, `tensorflow`, project compilation needs.
+
+### Project specific instructions
+
+See the instructions on the files:
+
+- [onxx-mlir](use-onnx.md)
+- [tensorflow, xla, hlo-mlir](use-tensorflow.md)
 
 ## Know issues
 
