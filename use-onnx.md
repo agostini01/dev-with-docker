@@ -113,6 +113,8 @@ network will be saved to the `/tmp/` folder of the container.
 
 ### MNIST
 
+This example works.
+
 ```
 mkdir /working_dir/examples/mnist
 cd /working_dir/examples/mnist
@@ -126,7 +128,7 @@ From here, we have generated a `.ll` file that is flattened (no operations anymo
 and can be optimized by opt-10, llc-10 tools (earlier versions cannot parse
 the generated `.ll`).
 **Note:** Currently the docker container has opt-8, llc-8 installed on the
-*PATH, which will not parse the file.
+**PATH**, which will not parse the file.
 
 With the proper opt, llc versions. The `ll` code can be optimized with:
 
@@ -139,6 +141,8 @@ clang-10.0.0-build/bin/llc ~/Development/onnx/examples/mnist/mnist-O3.ll  # Gene
 
 ### RESNET-50 V2 from onnx
 
+This example works.
+
 ```
 mkdir /working_dir/examples/resent50-v2
 cd /working_dir/examples/resent50-v2
@@ -150,7 +154,7 @@ tar -xvf resnet50.tar.gz # will extract a model.onnx file
 ./onnx-mlir --EmitLLVMIR /working_dir/examples/resnet50-onnx/resnet50/model.onnx.mlir
 ```
 
-With the proper opt, llc versions. The `ll` code can be optimized with:
+With the proper opt, llc versions, the `ll` code can be optimized with:
 
 ```bash
 # This does not work with the current container which has clang-8
