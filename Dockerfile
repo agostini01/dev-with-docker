@@ -103,8 +103,12 @@ RUN echo "export CXX=/usr/bin/clang++-8" >> ~/.bashrc && \
     echo "export CC=/usr/bin/clang-8" >> ~/.bashrc
     
 # Print welcome message
-RUN echo "echo 'Welcome to Nico development container" >> ~/.bashrc && \
+RUN echo "echo 'Welcome to Nico development container'" >> ~/.bashrc && \
     echo "echo ' '" >> ~/.bashrc && \
     echo "echo 'Make sure that the correct USER_ID and GROUP_ID'" >> ~/.bashrc && \
     echo "echo '    have been used to start this container'" >> ~/.bashrc && \
+    echo "echo ' '" >> ~/.bashrc && \
+    echo "echo 'NOTE:'" >> ~/.bashrc && \
+    echo "echo '    /working_dir folder was volume mounted'" >> ~/.bashrc && \
+    echo "echo '    $HOME/.cache/bazel folder was volume mounted'" >> ~/.bashrc && \
     echo "echo ' '" >> ~/.bashrc 

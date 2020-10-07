@@ -37,9 +37,13 @@ else
     fi
 fi
 
+# Create a folder for bazel builds if it does not exist
+mkdir -p ${HOME}/.cache/bazel
+
 # start bash
 docker run $CNAME --privileged -it \
   --user=$USER_ID \
   -v ${PWD}:/working_dir -w /working_dir \
+  -v ${HOME}/.cache/bazel:/home/developer/.cache/bazel \
   $IMAGE_NAME \
   /bin/bash

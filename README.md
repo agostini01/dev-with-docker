@@ -13,6 +13,10 @@ ID.
 
 `start-docker.sh` will start the container and volume mount the work directory.
 
+* It also creates `$HOME/.cache/bazel/` and mounts to 
+  `/home/developer/.cache/bazel/` to persist the builds if containers are 
+  restarted.
+
 The user `developer` is added to the sudo group. Check the `Dockerfile` to
 verify the default password.
 
