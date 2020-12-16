@@ -99,8 +99,8 @@ RUN git clone https://github.com/agostini01/dotfiles.git && \
 RUN echo "PS1='\[\033[01;31m\][\[\033[01;30m\]\u@\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '" >> .bashrc
 
 # Select clang compiler
-RUN echo "export CXX=/usr/bin/clang++-8" >> ~/.bashrc && \
-    echo "export CC=/usr/bin/clang-8" >> ~/.bashrc
+RUN echo "export CXX=/usr/bin/clang++-10" >> ~/.bashrc && \
+    echo "export CC=/usr/bin/clang-10" >> ~/.bashrc
     
 # Print welcome message
 RUN echo "echo 'Welcome to Nico development container'" >> ~/.bashrc && \

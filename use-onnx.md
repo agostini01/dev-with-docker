@@ -140,10 +140,8 @@ the generated `.ll`).
 With the proper opt, llc versions. The `ll` code can be optimized with:
 
 ```bash
-# This does not work with the current container which has clang-8
-# These commands were executed outside of the container
-clang-10.0.0-build/bin/opt ~/Development/onnx/examples/mnist/mnist.ll -O3 -S -o mnist-O3.ll
-clang-10.0.0-build/bin/llc ~/Development/onnx/examples/mnist/mnist-O3.ll  # Generates .s assembly file
+opt-10 /working_dir/examples/mnist/mnist.ll -O3 -S -o mnist-O3.ll
+llc-10 /working_dir/examples/mnist/mnist-O3.ll  # Generates .s assembly file
 ```
 
 ### RESNET-50 V2 from onnx
@@ -164,10 +162,8 @@ tar -xvf resnet50.tar.gz # will extract a model.onnx file
 With the proper opt, llc versions, the `ll` code can be optimized with:
 
 ```bash
-# This does not work with the current container which has clang-8
-# These commands were executed outside of the container
-clang-10.0.0-build/bin/opt ~/Development/onnx/examples//mnist.ll -O3 -S -o mnist-O3.ll
-clang-10.0.0-build/bin/llc ~/Development/onnx/examples/mnist/mnist-O3.ll  # Generates .s assembly file
+opt-10 /working_dir/examples//mnist.ll -O3 -S -o mnist-O3.ll
+llc-10 /working_dir/examples/mnist/mnist-O3.ll  # Generates .s assembly file
 ```
 
 
