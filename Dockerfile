@@ -14,8 +14,8 @@
 # limitations under the License.
 # ==============================================================================
 
-FROM tensorflow/tensorflow:nightly-custom-op-ubuntu16
-#FROM tensorflow/tensorflow:latest-devel-py3
+# FROM tensorflow/tensorflow:nightly-custom-op-ubuntu18
+FROM tensorflow/tensorflow:latest-devel
 
 RUN apt update
 
@@ -23,7 +23,7 @@ RUN apt update
 RUN apt install -y curl wget tree less git vim tmux htop
 
 # Compilers
-RUN apt install clang-8 lld-8 -y
+RUN apt install -y clang-10 lld-10
 
 # ONNX-mlir dependencies
 RUN apt install -y libncurses-dev
